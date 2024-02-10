@@ -1,8 +1,11 @@
+from classes.product import Product
+
+
 class Category:
     """Class to represent product Categories."""
     name: str
     description: str = ''
-    products: list = list()
+    __products: list = list()
     _number_categories: int = 0
     _unique_products: set = set()
 
@@ -12,7 +15,7 @@ class Category:
         self.description = description
 
         for product in products_list:
-            self.products.append(product)
+            self.__products.append(product)
             Category._unique_products.add(product.name)
 
         Category._number_categories += 1
@@ -26,3 +29,7 @@ class Category:
     def get_number_unique_products():
         """Get the number of unique products."""
         return len(Category._unique_products)
+
+    def add_product(self, product: Product):
+        """Adds a product to the list"""
+        self.__products.append(product)
