@@ -30,6 +30,15 @@ class Category:
         """Get the number of unique products."""
         return len(Category._unique_products)
 
+    @property
+    def products(self):
+        return self.__products
+
     def add_product(self, product: Product):
         """Adds a product to the list"""
         self.__products.append(product)
+
+    @property
+    def products_list(self):
+        """Return a list of strings with information about products."""
+        return [f"{product.name}, {product.price} руб. Остаток: {product.quantity} шт." for product in self.__products]

@@ -24,4 +24,6 @@ def test_get_number_categories(get_cat_1):
     assert Category(*get_cat_1).get_number_categories() == 4
 
 
+def test_products_list(get_cat_1):
+    assert Category(*get_cat_1).products_list[0] == "Samsung UE32E5000, 25000 руб. Остаток: 3 шт."
 
