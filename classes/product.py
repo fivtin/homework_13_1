@@ -4,6 +4,7 @@ class Product:
     description: str
     price: float
     quantity: int
+    __all_products: list = list()
 
     def __init__(self, name, description, price, quantity):
         """Method to initialize an instance of a class. Set values for the instance attributes."""
@@ -11,3 +12,19 @@ class Product:
         self.description = description
         self.price = price
         self.quantity = quantity
+        Product.__all_products.append(self)
+
+    @classmethod
+    def create_product(cls, name, description, price, quantity):
+        """
+        The method returns an instance of the class if a product with the same name has not been created previously.
+        Otherwise, returns the existing instance.
+        """
+        for product in cls.__all_products:
+            if product.name == name:
+                product.quantity += quantity
+                if price > product.price:
+                    product.price = price
+                return product
+
+        return cls(name, description, price, quantity)
