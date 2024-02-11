@@ -23,3 +23,21 @@ def test_create_same_product():
     assert id(prod_1) == id(prod_2)
     assert prod_1.price == 2000
     assert prod_1.quantity == 3
+
+
+def test_reset_price():
+    prod_1 = Product("name_1", "", 1000, 1)
+    del prod_1.price
+    assert prod_1.price == 0.0
+
+
+def test_price_increase():
+    prod_1 = Product("name_1", "", 1000, 1)
+    prod_1.price = 2000
+    assert prod_1.price == 2000
+
+
+def test_price_reduction():
+    prod_1 = Product("name_1", "", 1000, 1)
+    prod_1.price = -200
+    assert prod_1.price == 1000
