@@ -1,3 +1,5 @@
+import io
+
 from classes.product import Product
 from fixtures import get_prod_1
 
@@ -37,7 +39,14 @@ def test_price_increase():
     assert prod_1.price == 2000
 
 
-def test_price_reduction():
+def test_incorrect_price():
     prod_1 = Product("name_1", "", 1000, 1)
     prod_1.price = -200
     assert prod_1.price == 1000
+
+
+def test_price_reduce(monkeypatch):
+    monkeypatch.setattr('sys.stdin', io.StringIO('y'))
+    prod_1 = Product("name_1", "", 1000, 1)
+    prod_1.price = 500
+    assert prod_1.price == 500
