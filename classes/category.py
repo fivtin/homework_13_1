@@ -5,7 +5,6 @@ class Category:
     """Class to represent product Categories."""
     name: str
     description: str = ''
-    __products: list = list()
     _number_categories: int = 0
     _unique_products: set = set()
 
@@ -13,7 +12,7 @@ class Category:
         """Method to initialize an instance of a class. Set values for the instance attributes."""
         self.name = name
         self.description = description
-
+        self.__products: list = list()
         for product in products_list:
             self.__products.append(product)
             Category._unique_products.add(product.name)
