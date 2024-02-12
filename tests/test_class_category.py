@@ -17,11 +17,13 @@ def test_get_product_properties(get_cat_1):
 
 
 def test_get_number_unique_products(get_cat_1, get_cat_2):
-    assert Category(*get_cat_2).get_number_unique_products() == 2
+    Category.unique_products = 0
+    assert Category(*get_cat_2).unique_products == 2
 
 
 def test_get_number_categories(get_cat_1):
-    assert Category(*get_cat_1).get_number_categories() == 4
+    Category.number_categories = 0
+    assert Category(*get_cat_1).number_categories == 1
 
 
 def test_products_list(get_cat_1):
