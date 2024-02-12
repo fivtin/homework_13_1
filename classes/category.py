@@ -12,7 +12,6 @@ class Category:
         """Method to initialize an instance of a class. Set values for the instance attributes."""
         self.name = name
         self.description = description
-        self.__products = list()
         self.__products = products_list
         Category.unique_products += len(products_list)
         Category.number_categories += 1
