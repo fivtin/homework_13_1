@@ -54,3 +54,12 @@ def test_price_reduce(monkeypatch):
 
 def test_string_represent():
     assert str(Product("name_1", "", 1000, 1)) == "name_1, 1000 руб. Остаток: 1 шт."
+
+
+def test_product_quantity__len__mm():
+    assert len(Product("p1", "", 1, 50)) == 50
+
+
+def test_addition_products():
+    assert Product("p1", "", 100, 2) + \
+           Product("p2", "", 200, 3) == 800

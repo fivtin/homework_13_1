@@ -22,7 +22,7 @@ class Category:
 
     def __len__(self):
         """Returns the total quantity of all products in the 'category' instance."""
-        return sum([product.quantity for product in self.__products])
+        return sum([len(product) for product in self.__products])
 
     @property
     def products(self):

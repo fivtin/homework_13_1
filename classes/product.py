@@ -18,6 +18,14 @@ class Product:
         """Returns a string representation of the 'product' instance."""
         return f"{self.name}, {self.price} руб. Остаток: {self.quantity} шт."
 
+    def __add__(self, other):
+        """Implementation of the product addition method."""
+        return self.price * self.quantity + other.price * other.quantity
+
+    def __len__(self):
+        """Returns the quantity of a product."""
+        return self.quantity
+
     @classmethod
     def create_product(cls, name, description, price, quantity):
         """
