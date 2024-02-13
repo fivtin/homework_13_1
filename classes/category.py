@@ -1,28 +1,61 @@
+from classes.product import Product
+
+
 class Category:
     """Class to represent product Categories."""
     name: str
     description: str = ''
-    products: list = list()
-    _number_categories: int = 0
-    _unique_products: set = set()
+    number_categories: int = 0
+    unique_products: int = 0
 
     def __init__(self, name, description, products_list):
         """Method to initialize an instance of a class. Set values for the instance attributes."""
         self.name = name
         self.description = description
+        self.__products = products_list
+        Category.unique_products += len(products_list)
+        Category.number_categories += 1
 
-        for product in products_list:
-            self.products.append(product)
-            Category._unique_products.add(product.name)
+    def __str__(self):
+        """Returns a string representation of the 'category' instance."""
+        return f"{self.name}, количество продуктов: {len(self)} шт."
 
-        Category._number_categories += 1
+    def __len__(self):
+        """Returns the total quantity of all products in the 'category' instance."""
+        return sum([len(product) for product in self.__products])
 
-    @staticmethod
-    def get_number_categories():
-        """Get the total number of categories."""
-        return Category._number_categories
+    @property
+    def products(self):
+        """Return the hidden value of the product list."""
+        return self.__products
 
-    @staticmethod
-    def get_number_unique_products():
-        """Get the number of unique products."""
-        return len(Category._unique_products)
+    def add_product(self, product: Product):
+        """Adds a product to the list"""
+        self.__products.append(product)
+        Category.unique_products += 1
+
+    @property
+    def products_list(self):
+        """Return a list of strings with information about products."""
+        return [str(product) for product in self.__products]
+
+
+class CategoryList:
+    """The class implements iterating over objects in the list of “products”."""
+
+    def __init__(self, category):
+        """Initializing a class with a "Category" object."""
+        self.category = category
+
+    def __iter__(self):
+        """Return an iterator object."""
+        self.index = -1
+        return self
+
+    def __next__(self):
+        """Getting the next object from the "Products" list."""
+        self.index += 1
+        if self.index < len(self.category.products):
+            return self.category.products[self.index]
+        else:
+            raise StopIteration

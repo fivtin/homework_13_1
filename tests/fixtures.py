@@ -16,11 +16,6 @@ def get_prod_1():
     return get_data_prod_1()
 
 
-# @fixture
-# def get_prod_2():
-#     return get_data_prod_2()
-
-
 @fixture
 def get_cat_1():
     return "TV", "", [Product(*get_data_prod_1()), Product(*get_data_prod_2())]
