@@ -38,3 +38,24 @@ class Category:
     def products_list(self):
         """Return a list of strings with information about products."""
         return [str(product) for product in self.__products]
+
+
+class CategoryList:
+    """The class implements iterating over objects in the list of “products”."""
+
+    def __init__(self, category):
+        """Initializing a class with a "Category" object."""
+        self.category = category
+
+    def __iter__(self):
+        """Return an iterator object."""
+        self.index = -1
+        return self
+
+    def __next__(self):
+        """Getting the next object from the "Products" list."""
+        self.index += 1
+        if self.index < len(self.category.products):
+            return self.category.products[self.index]
+        else:
+            raise StopIteration

@@ -1,4 +1,4 @@
-from classes.category import Category
+from classes.category import Category, CategoryList
 from fixtures import get_cat_1, get_cat_2
 
 
@@ -37,3 +37,7 @@ def test_self_len(get_cat_1):
 def test_string_represent(get_cat_1):
     assert str(Category(*get_cat_1)) == "TV, количество продуктов: 5 шт."
 
+
+def test_category_list(get_cat_1):
+    category_list = CategoryList(Category(*get_cat_1))
+    assert [len(product) for product in category_list] == [3, 2]
