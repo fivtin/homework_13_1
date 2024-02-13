@@ -50,3 +50,7 @@ def test_price_reduce(monkeypatch):
     prod_1 = Product("name_1", "", 1000, 1)
     prod_1.price = 500
     assert prod_1.price == 500
+
+
+def test_string_represent():
+    assert str(Product("name_1", "", 1000, 1)) == "name_1, 1000 руб. Остаток: 1 шт."

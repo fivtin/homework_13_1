@@ -16,6 +16,14 @@ class Category:
         Category.unique_products += len(products_list)
         Category.number_categories += 1
 
+    def __str__(self):
+        """Returns a string representation of the 'category' instance."""
+        return f"{self.name}, количество продуктов: {len(self)} шт."
+
+    def __len__(self):
+        """Returns the total quantity of all products in the 'category' instance."""
+        return sum([product.quantity for product in self.__products])
+
     @property
     def products(self):
         """Return the hidden value of the product list."""
@@ -29,4 +37,4 @@ class Category:
     @property
     def products_list(self):
         """Return a list of strings with information about products."""
-        return [f"{product.name}, {product.price} руб. Остаток: {product.quantity} шт." for product in self.__products]
+        return [str(product) for product in self.__products]

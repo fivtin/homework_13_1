@@ -14,6 +14,10 @@ class Product:
         self.quantity = quantity
         Product.__all_products.append(self)
 
+    def __str__(self):
+        """Returns a string representation of the 'product' instance."""
+        return f"{self.name}, {self.price} руб. Остаток: {self.quantity} шт."
+
     @classmethod
     def create_product(cls, name, description, price, quantity):
         """

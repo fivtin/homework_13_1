@@ -29,3 +29,11 @@ def test_get_number_categories(get_cat_1):
 def test_products_list(get_cat_1):
     assert Category(*get_cat_1).products_list[0] == "Samsung UE32E5000, 25000 руб. Остаток: 3 шт."
 
+
+def test_self_len(get_cat_1):
+    assert len(Category(*get_cat_1)) == 5
+
+
+def test_string_represent(get_cat_1):
+    assert str(Category(*get_cat_1)) == "TV, количество продуктов: 5 шт."
+
