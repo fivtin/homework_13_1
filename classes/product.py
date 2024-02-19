@@ -19,8 +19,13 @@ class Product:
         return f"{self.name}, {self.price} руб. Остаток: {self.quantity} шт."
 
     def __add__(self, other):
-        """Implementation of the product addition method."""
-        return self.price * self.quantity + other.price * other.quantity
+        """
+        Implementation of the product addition method.
+        Adding only elements of the same type.
+        """
+        if isinstance(self, other.__class__):
+            return self.price * self.quantity + other.price * other.quantity
+        raise TypeError("Elements must be of the same type.")
 
     def __len__(self):
         """Returns the quantity of a product."""
