@@ -60,5 +60,37 @@ class Product:
 
     @price.deleter
     def price(self):
-        """Method for resetting the private attribute 'price'."""
+        """ Method for resetting the private attribute 'price'. """
         self.__price = 0.0
+
+
+class SmartPhone(Product):
+    """The 'smartphone' class extends the base 'product' class."""
+
+    performance: float
+    model: str
+    internal_memory: str
+    colour: str
+
+    def __init__(self, name, description, price, quantity, performance, model, internal_memory, colour):
+        """ Extend the base class constructor. """
+        super().__init__(name, description, price, quantity)
+        self.performance = performance
+        self.model = model
+        self.internal_memory = internal_memory
+        self.colour = colour
+
+
+class LawnGrass(Product):
+    """ The 'lawn grass' class extends the base 'product' class. """
+
+    country: str
+    germination_period: str
+    colour: str
+
+    def __init__(self, name, description, price, quantity, country, germination_period, colour):
+        """ Extend the base class constructor. """
+        super().__init__(name, description, price, quantity)
+        self.country = country
+        self.germination_period = germination_period
+        self.colour = colour
