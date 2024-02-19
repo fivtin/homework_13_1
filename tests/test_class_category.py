@@ -1,4 +1,5 @@
-from classes.category import Category, CategoryList
+from classes.category import Category, CategoryProductIter
+from classes.product import Product, SmartPhone, LawnGrass
 from fixtures import get_cat_1, get_cat_2
 
 
@@ -39,5 +40,34 @@ def test_string_represent(get_cat_1):
 
 
 def test_category_list(get_cat_1):
-    category_list = CategoryList(Category(*get_cat_1))
+    category_list = CategoryProductIter(Category(*get_cat_1))
     assert [len(product) for product in category_list] == [3, 2]
+
+
+def test_append_right_product(get_cat_1):
+    cat = Category(*get_cat_1)
+    new_prod = Product("p1", "", 1000, 10)
+    new_phone = SmartPhone("phone", "", 5000, 5, 0, "", "", "")
+    new_grass = LawnGrass("grass", "", 600, 10, "", "", "")
+    try:
+        cat.add_product(new_prod)
+        cat.add_product(new_phone)
+        cat.add_product(new_grass)
+        assert True
+    except:
+        assert False
+
+
+def test_append_wrong_product(get_cat_1):
+    cat = Category(*get_cat_1)
+    new_prod = Product("p1", "", 1000, 10)
+    try:
+        # cat.add_product(new_prod)
+        cat.add_product(0)
+    except TypeError as err:
+        if str(err) == "You can only add an element of the Product class or its subclasses.":
+            assert True
+        else:
+            assert False
+    else:
+        assert False

@@ -1,4 +1,4 @@
-from classes.product import Product
+from classes.product import Product, LawnGrass, SmartPhone
 
 
 class Category:
@@ -29,10 +29,16 @@ class Category:
         """Return the hidden value of the product list."""
         return self.__products
 
-    def add_product(self, product: Product):
-        """Adds a product to the list"""
-        self.__products.append(product)
-        Category.unique_products += 1
+    def add_product(self, product):
+        """
+        Adds a product to the list.
+        Checking the element type. There must be a "Product" or its subclasses.
+        """
+        if issubclass(product.__class__, Product):
+            self.__products.append(product)
+            Category.unique_products += 1
+        else:
+            raise TypeError("You can only add an element of the Product class or its subclasses.")
 
     @property
     def products_list(self):
@@ -40,7 +46,7 @@ class Category:
         return [str(product) for product in self.__products]
 
 
-class CategoryList:
+class CategoryProductIter:
     """The class implements iterating over objects in the list of “products”."""
 
     def __init__(self, category):
