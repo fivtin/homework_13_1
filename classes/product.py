@@ -23,7 +23,7 @@ class Product:
         Implementation of the product addition method.
         Adding only elements of the same type.
         """
-        if type(self) is other.__class__:
+        if isinstance(self, other.__class__) and isinstance(other, self.__class__):
             return self.price * self.quantity + other.price * other.quantity
         raise TypeError("Elements must be of the same type.")
 
