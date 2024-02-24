@@ -19,8 +19,13 @@ class Product:
         return f"{self.name}, {self.price} руб. Остаток: {self.quantity} шт."
 
     def __add__(self, other):
-        """Implementation of the product addition method."""
-        return self.price * self.quantity + other.price * other.quantity
+        """
+        Implementation of the product addition method.
+        Adding only elements of the same type.
+        """
+        if isinstance(self, other.__class__) and isinstance(other, self.__class__):
+            return self.price * self.quantity + other.price * other.quantity
+        raise TypeError("Elements must be of the same type.")
 
     def __len__(self):
         """Returns the quantity of a product."""
@@ -60,5 +65,37 @@ class Product:
 
     @price.deleter
     def price(self):
-        """Method for resetting the private attribute 'price'."""
+        """ Method for resetting the private attribute 'price'. """
         self.__price = 0.0
+
+
+class SmartPhone(Product):
+    """The 'smartphone' class extends the base 'product' class."""
+
+    performance: float
+    model: str
+    internal_memory: str
+    colour: str
+
+    def __init__(self, name, description, price, quantity, performance, model, internal_memory, colour):
+        """ Extend the base class constructor. """
+        super().__init__(name, description, price, quantity)
+        self.performance = performance
+        self.model = model
+        self.internal_memory = internal_memory
+        self.colour = colour
+
+
+class LawnGrass(Product):
+    """ The 'lawn grass' class extends the base 'product' class. """
+
+    country: str
+    germination_period: str
+    colour: str
+
+    def __init__(self, name, description, price, quantity, country, germination_period, colour):
+        """ Extend the base class constructor. """
+        super().__init__(name, description, price, quantity)
+        self.country = country
+        self.germination_period = germination_period
+        self.colour = colour
