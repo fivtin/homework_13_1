@@ -1,4 +1,7 @@
-class Product:
+from classes.abstract import AbstractProduct
+
+
+class Product(AbstractProduct):
     """Class to represent Product."""
     name: str
     description: str
