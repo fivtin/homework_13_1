@@ -103,7 +103,3 @@ class LawnGrass(MixinRepr, Product):
         self.germination_period = germination_period
         self.colour = colour
         super().__init__(name, description, price, quantity)
-
-
-s = SmartPhone("", "", 10000, 5, 0, "hhj", "", "")
-g = LawnGrass("", "", 70, 12, "", "", "")
