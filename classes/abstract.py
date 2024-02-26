@@ -23,3 +23,9 @@ class AbstractProduct(ABC):
     def __str__(self):
         """Here you need to implement a method for string represent products."""
         ...
+
+    @classmethod
+    @abstractmethod
+    def create_product(cls, *args, **kwargs):
+        """Here you need to implement a method that returns an instance of the class."""
+        ...
