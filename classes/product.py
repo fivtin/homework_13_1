@@ -1,4 +1,8 @@
-class Product:
+from classes.abstract import AbstractProduct
+from classes.mixins import MixinRepr
+
+
+class Product(AbstractProduct):
     """Class to represent Product."""
     name: str
     description: str
@@ -69,7 +73,7 @@ class Product:
         self.__price = 0.0
 
 
-class SmartPhone(Product):
+class SmartPhone(MixinRepr, Product):
     """The 'smartphone' class extends the base 'product' class."""
 
     performance: float
@@ -79,14 +83,14 @@ class SmartPhone(Product):
 
     def __init__(self, name, description, price, quantity, performance, model, internal_memory, colour):
         """ Extend the base class constructor. """
-        super().__init__(name, description, price, quantity)
         self.performance = performance
         self.model = model
         self.internal_memory = internal_memory
         self.colour = colour
+        super().__init__(name, description, price, quantity)
 
 
-class LawnGrass(Product):
+class LawnGrass(MixinRepr, Product):
     """ The 'lawn grass' class extends the base 'product' class. """
 
     country: str
@@ -95,7 +99,7 @@ class LawnGrass(Product):
 
     def __init__(self, name, description, price, quantity, country, germination_period, colour):
         """ Extend the base class constructor. """
-        super().__init__(name, description, price, quantity)
         self.country = country
         self.germination_period = germination_period
         self.colour = colour
+        super().__init__(name, description, price, quantity)
