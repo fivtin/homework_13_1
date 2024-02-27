@@ -1,3 +1,4 @@
+from classes.exceptions import AddProductException
 from classes.product import Product, LawnGrass, SmartPhone
 
 
@@ -36,7 +37,8 @@ class Category:
         """
         if issubclass(product.__class__, Product):
             if product.quantity <= 0:
-                raise ValueError("Сannot add a product with zero quantity.")
+                # raise ValueError("Сannot add a product with zero quantity.")
+                raise AddProductException
             self.__products.append(product)
             Category.unique_products += 1
         else:
