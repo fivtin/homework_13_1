@@ -47,6 +47,14 @@ class Category:
         """Return a list of strings with information about products."""
         return [str(product) for product in self.__products]
 
+    def get_avg_price(self):
+        """Returns the average price of all products, or zero if the list of products is empty."""
+        try:
+            total_price = sum([product.price for product in self.__products]) / len(self.__products)
+        except ZeroDivisionError:
+            total_price = 0
+        return total_price
+
 
 class CategoryProductIter:
     """The class implements iterating over objects in the list of “products”."""
