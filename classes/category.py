@@ -1,3 +1,4 @@
+from classes.exceptions import AddProductException
 from classes.product import Product, LawnGrass, SmartPhone
 
 
@@ -35,6 +36,9 @@ class Category:
         Checking the element type. There must be a "Product" or its subclasses.
         """
         if issubclass(product.__class__, Product):
+            if product.quantity <= 0:
+                # raise ValueError("Сannot add a product with zero quantity.")
+                raise AddProductException
             self.__products.append(product)
             Category.unique_products += 1
         else:
@@ -44,6 +48,14 @@ class Category:
     def products_list(self):
         """Return a list of strings with information about products."""
         return [str(product) for product in self.__products]
+
+    def get_avg_price(self):
+        """Returns the average price of all products, or zero if the list of products is empty."""
+        try:
+            total_price = sum([product.price for product in self.__products]) / len(self.__products)
+        except ZeroDivisionError:
+            total_price = 0
+        return total_price
 
 
 class CategoryProductIter:
