@@ -1,4 +1,4 @@
-class AddProductException(Exception):
+class AddProductError(Exception):
     """An exception occurs if a product with zero quantity is added."""
 
     def __init__(self, *args, **kwargs):

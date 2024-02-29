@@ -1,7 +1,7 @@
 import pytest
 
 from classes.category import Category, CategoryProductIter
-from classes.exceptions import AddProductException
+from classes.exceptions import AddProductError
 from classes.product import Product, SmartPhone, LawnGrass
 from fixtures import get_cat_1, get_cat_2
 
@@ -85,5 +85,5 @@ def test_get_avg_price_zero():
 
 
 def test_append_product_zero():
-    with pytest.raises(AddProductException, match="Cannot add a product with zero quantity."):
+    with pytest.raises(AddProductError, match="Cannot add a product with zero quantity."):
         Category("cat", "", []).add_product(Product("prod", "", 100, 0))
